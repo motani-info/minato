@@ -190,6 +190,10 @@ export const questions: QuestionData[] = [
       { id: 'D', label: 'リンゴ 4 こ' },
     ],
     correctOptionId: 'A',
+    countDisplay: {
+      itemType: 'apple',
+      count: 3,
+    },
   },
   {
     id: 'grid-06',

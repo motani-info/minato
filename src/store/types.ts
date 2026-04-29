@@ -32,6 +32,10 @@ export interface ChoiceQuestion extends QuestionBase {
   type: 'choice';
   options: ChoiceOption[];
   correctOptionId: string;
+  countDisplay?: {
+    itemType: 'apple' | 'orange' | 'banana';
+    count: number;
+  };
 }
 
 export type QuestionData = GridQuestion | ChoiceQuestion;

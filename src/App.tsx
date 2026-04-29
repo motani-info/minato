@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { questions } from './assets/data/questions';
 import { GridDisplay } from './components/GridDisplay';
+import { CountDisplay } from './components/CountDisplay';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import type {
   Category,
@@ -16,8 +17,8 @@ import './App.css';
 const initialSession: SessionState = {
   started: false,
   currentQuestionIndex: 0,
-  difficulty: '',
-  category: '',
+  difficulty: 'all',
+  category: 'all',
   questionOrder: [],
   answers: [],
 };
@@ -48,8 +49,8 @@ function App() {
   const [selectedOptionId, setSelectedOptionId] = useState('');
   const [showJudge, setShowJudge] = useState(false);
 
-  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all' | ''>('');
-  const [selectedCategory, setSelectedCategory] = useState<Category | 'all' | ''>('');
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | 'all' | ''>('all');
+  const [selectedCategory, setSelectedCategory] = useState<Category | 'all' | ''>('all');
 
   const normalizedSession: SessionState = {
     ...initialSession,
@@ -268,23 +269,32 @@ function App() {
               )}
 
               {currentQuestion.type === 'choice' && (
-                <div className="choice-options">
-                  {(currentQuestion as ChoiceQuestion).options.map((option) => {
-                    const selected = selectedOptionId === option.id;
-                    const correct = showJudge && option.id === currentQuestion.correctOptionId;
-                    const wrong = showJudge && selected && !correct;
-                    return (
-                      <button
-                        key={option.id}
-                        onClick={() => handleSelect(option.id)}
-                        className={`choice-option ${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}
-                      >
-                        <strong>{option.id}</strong>
-                        <span>{option.label}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+                <>
+                  {(currentQuestion as ChoiceQuestion).countDisplay && (
+                    <CountDisplay
+                      itemType={(currentQuestion as ChoiceQuestion).countDisplay!.itemType}
+                      count={(currentQuestion as ChoiceQuestion).countDisplay!.count}
+                      size="md"
+                    />
+                  )}
+                  <div className="choice-options">
+                    {(currentQuestion as ChoiceQuestion).options.map((option) => {
+                      const selected = selectedOptionId === option.id;
+                      const correct = showJudge && option.id === currentQuestion.correctOptionId;
+                      const wrong = showJudge && selected && !correct;
+                      return (
+                        <button
+                          key={option.id}
+                          onClick={() => handleSelect(option.id)}
+                          className={`choice-option ${selected ? 'selected' : ''} ${correct ? 'correct' : ''} ${wrong ? 'wrong' : ''}`}
+                        >
+                          <strong>{option.id}</strong>
+                          <span>{option.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </>
               )}
 
               <div className="kid-actions">
