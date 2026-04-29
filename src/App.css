@@ -1,0 +1,10 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Tailwindをすべてのコンポーネントに有効化 */
+* {
+  box-sizing: border-box;
+}
