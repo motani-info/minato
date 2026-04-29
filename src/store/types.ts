@@ -1,6 +1,6 @@
-export type QuestionType = 'grid' | 'choice';
+export type QuestionType = 'grid' | 'choice' | 'line';
 export type Difficulty = 'easy' | 'normal';
-export type Category = 'shape' | 'classification';
+export type Category = 'shape' | 'classification' | 'line';
 
 export interface QuestionBase {
   id: string;
@@ -38,7 +38,17 @@ export interface ChoiceQuestion extends QuestionBase {
   };
 }
 
-export type QuestionData = GridQuestion | ChoiceQuestion;
+export interface LineQuestion extends QuestionBase {
+  type: 'line';
+  /** SVG path d attribute for the model line */
+  modelPath: string;
+  /** viewBox dimensions [width, height] */
+  viewBox: [number, number];
+  /** Distance threshold in SVG units for a "correct" trace */
+  threshold?: number;
+}
+
+export type QuestionData = GridQuestion | ChoiceQuestion | LineQuestion;
 
 export interface UserAnswer {
   questionId: string;

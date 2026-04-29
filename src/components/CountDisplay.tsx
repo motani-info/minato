@@ -11,23 +11,26 @@ const itemConfigs = {
     label: 'リンゴ',
     color: '#FF6B6B',
     stemColor: '#8B4513',
+    cardClass: 'bg-slate-50 border-slate-200',
   },
   orange: {
     label: 'みかん',
     color: '#FFA500',
     stemColor: '#228B22',
+    cardClass: 'bg-slate-50 border-slate-200',
   },
   banana: {
     label: 'バナナ',
     color: '#FFD700',
     stemColor: '#DAA520',
+    cardClass: 'bg-slate-50 border-slate-200',
   },
 };
 
 const sizeConfigs = {
-  sm: { containerSize: 60, itemSize: 45, gap: 8 },
-  md: { containerSize: 80, itemSize: 60, gap: 12 },
-  lg: { containerSize: 100, itemSize: 75, gap: 16 },
+  sm: { containerSize: 60, itemSize: 45, gapClass: 'gap-2' },
+  md: { containerSize: 80, itemSize: 60, gapClass: 'gap-3' },
+  lg: { containerSize: 100, itemSize: 75, gapClass: 'gap-4' },
 };
 
 export const CountDisplay: React.FC<CountDisplayProps> = ({ itemType, count, size = 'md' }) => {
@@ -126,17 +129,7 @@ export const CountDisplay: React.FC<CountDisplayProps> = ({ itemType, count, siz
 
   return (
     <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: `${sizeConfig.gap}px`,
-        padding: '16px',
-        backgroundColor: 'rgba(255,255,255,0.5)',
-        borderRadius: '12px',
-        margin: '16px auto',
-        width: 'fit-content',
-      }}
+      className={`flex justify-center items-center ${sizeConfig.gapClass} p-4 rounded-xl mx-auto my-4 w-fit border shadow-sm ${config.cardClass}`}
     >
       {Array.from({ length: count }).map((_, index) => renderItem(index))}
     </div>
