@@ -243,4 +243,115 @@ export const questions: QuestionData[] = [
     ],
     correctOptionId: 'A',
   },
+  {
+    id: 'grid-07',
+    type: 'grid',
+    difficulty: 'normal',
+    category: 'shape',
+    title: 'えんの もよう を みつけよう',
+    prompt: 'おてほん と おなじ まる の ならび を えらんでね',
+    modelPattern: [
+      [true, false, true],
+      [false, true, false],
+      [true, false, true],
+    ],
+    options: [
+      {
+        id: 'A',
+        pattern: [
+          [true, false, true],
+          [false, true, false],
+          [true, false, true],
+        ],
+      },
+      {
+        id: 'B',
+        pattern: [
+          [true, true, true],
+          [false, true, false],
+          [false, false, false],
+        ],
+      },
+      {
+        id: 'C',
+        pattern: [
+          [false, true, false],
+          [true, false, true],
+          [false, true, false],
+        ],
+      },
+      {
+        id: 'D',
+        pattern: [
+          [true, true, false],
+          [false, true, true],
+          [false, true, false],
+        ],
+      },
+    ],
+    correctOptionId: 'A',
+  },
+  {
+    id: 'choice-04',
+    type: 'choice',
+    difficulty: 'normal',
+    category: 'classification',
+    title: 'なかまじゃない もの は どれ？',
+    prompt: 'かたちが ちがう もの を えらんでね',
+    options: [
+      { id: 'A', label: '▲' },
+      { id: 'B', label: '▲' },
+      { id: 'C', label: '●' },
+      { id: 'D', label: '▲' },
+    ],
+    correctOptionId: 'C',
+  },
+  {
+    id: 'grid-08',
+    type: 'grid',
+    difficulty: 'normal',
+    category: 'shape',
+    title: 'くろ しろ の もよう',
+    prompt: 'つぎに くる かたちは どれでしょう？',
+    modelPattern: [
+      [true, false, true],
+      [true, true, false],
+      [false, true, true],
+    ],
+    options: [
+      {
+        id: 'A',
+        pattern: [
+          [true, false, true],
+          [true, true, false],
+          [false, true, true],
+        ],
+      },
+      {
+        id: 'B',
+        pattern: [
+          [false, true, false],
+          [false, false, true],
+          [true, false, false],
+        ],
+      },
+      {
+        id: 'C',
+        pattern: [
+          [true, true, true],
+          [false, false, false],
+          [true, true, true],
+        ],
+      },
+      {
+        id: 'D',
+        pattern: [
+          [false, true, false],
+          [true, false, true],
+          [true, true, false],
+        ],
+      },
+    ],
+    correctOptionId: 'A',
+  },
 ];
